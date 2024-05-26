@@ -1,0 +1,53 @@
+<RootWidget>:
+    input_value: input_value
+    from_unit: from_unit
+    to_unit: to_unit
+    result_label: result_label
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        canvas.before:
+            Color:
+                rgba: 0.0, 0.5, 0.8, 1  # Blue background color
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Spinner:
+            id: from_unit
+            text: "Select Unit To Be Converted From"
+            values: ("%w/v", "mg/mL", "g/L", "%w/w", "ppm", "mM", "M", "mg", "g", "kg", "mL", "L", "µL")
+            background_color: 1, 1, 1, 1  # White background for spinner
+            color: 0, 0, 0, 1  # Black text color
+            pos_hint: {"x": 0, "y": 1}
+            size_hint: 0.5, 0.5
+        TextInput:
+            id: input_value
+            hint_text: "Enter value"
+            multiline: False
+            input_filter: 'float'
+            background_color: 1, 1, 1, 1  # White background for text input
+            foreground_color: 0, 0, 0, 1  # Black text color
+            pos_hint: {"x": 0.5, "y": 1}
+            size_hint: 0.5, 0.5
+
+        Spinner:
+            id: to_unit
+            text: "Select Unit To Be Converted To"
+            values: ("%w/v", "mg/mL", "g/L", "%w/w", "ppm", "mM", "M", "mg", "g", "kg", "mL", "L", "µL")
+            background_color: 1, 1, 1, 1  # White background for spinner
+            color: 0, 0, 0, 1  # Black text color
+
+        Button:
+            text: "Convert"
+            background_color: 0.0, 0.5, 0.8, 1  # Blue button color
+            color: 1, 1, 1, 1  # White text color
+            on_press: root.calculate_conversion()
+
+        Label:
+            id: result_label
+            text: "Result: "
+            color: 1, 1, 1, 1  # White text color
+
+
